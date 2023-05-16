@@ -6,6 +6,7 @@ import com.bruno.minhasfinancas.model.entity.Usuario;
 import com.bruno.minhasfinancas.model.repository.UsuarioRepository;
 import com.bruno.minhasfinancas.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,9 +18,13 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Autowired
     private UsuarioRepository repository;
 
-    public UsuarioServiceImpl(UsuarioRepository repository) {
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    public UsuarioServiceImpl(UsuarioRepository repository, PasswordEncoder passwordEncoder) {
         super();
         this.repository = repository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -28,7 +33,8 @@ public class UsuarioServiceImpl implements UsuarioService {
         if (!usuario.isPresent()) {
             throw new ErroAutenticacaoException("Usuário não encontrado!");
         }
-        if (!usuario.get().getSenha().equals(senha)) {
+        boolean senhasBatem = passwordEncoder.matches(senha, usuario.get().getSenha());
+        if (!senhasBatem) {
             throw new ErroAutenticacaoException("Senha inválida!");
         }
         return usuario.get();
@@ -39,12 +45,18 @@ public class UsuarioServiceImpl implements UsuarioService {
     public Usuario salvar(Usuario usuario) {
         validar(usuario);
         validarEmail(usuario.getEmail());
+        criprografarSenha(usuario);
         try {
             return repository.save(usuario);
         } catch (Throwable throwable) {
             throw new RegraNegocioException("Erro ao salvar o usuário!");
         }
 
+    }
+
+    private void criprografarSenha(Usuario usuario) {
+        String senhaCrypto = passwordEncoder.encode(usuario.getSenha());
+        usuario.setSenha(senhaCrypto);
     }
 
     @Override
