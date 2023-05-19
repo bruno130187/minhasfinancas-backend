@@ -8,6 +8,7 @@ import com.bruno.minhasfinancas.model.repository.LancamentoRepository;
 import com.bruno.minhasfinancas.service.LancamentoService;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,7 +57,7 @@ public class LancamentoServiceImpl implements LancamentoService {
                 .withIgnoreCase()
                 .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING));
         validarBusca(lancamentoFiltro);
-        return repository.findAll(example);
+        return repository.findAll(example, Sort.by("ano").descending().and(Sort.by("mes").descending()));
     }
 
     @Override

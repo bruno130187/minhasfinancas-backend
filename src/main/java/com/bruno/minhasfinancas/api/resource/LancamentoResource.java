@@ -29,10 +29,10 @@ public class LancamentoResource {
     @GetMapping
     public ResponseEntity buscar(
             @RequestParam(value = "descricao", required = false) String descricao,
-            @RequestParam(value = "mes", required = false) Integer mes,
-            @RequestParam(value = "ano", required = false) Integer ano,
-            @RequestParam(value = "tipo", required = false) String tipo,
-            @RequestParam(value = "status", required = false) String status,
+            @RequestParam(value = "mes",       required = false) Integer mes,
+            @RequestParam(value = "ano",       required = false) Integer ano,
+            @RequestParam(value = "tipo",      required = false) String tipo,
+            @RequestParam(value = "status",    required = false) String status,
             @RequestParam("usuario") Long idUsuario
     ) {
         Lancamento lancamentoFiltro = new Lancamento();
