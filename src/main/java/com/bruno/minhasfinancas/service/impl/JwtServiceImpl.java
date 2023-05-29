@@ -21,6 +21,9 @@ public class JwtServiceImpl implements JwtService {
     @Value("${jwt.expiracao}")
     private String expiracao;
 
+    @Value("${jwt.refreshExpiracao}")
+    private String refreshExpiracao;
+
     @Value("${jwt.chave-assinatura}")
     private String chaveAssinatura;
 
