@@ -1,7 +1,7 @@
 # minhasfinancas-backend
 Backend do aplicativo minhas finanças
 
-## Projeto de controle de entrada e saída financeira com Spring Boot Java e o Spring Security para a autenticação, usando docker para o servidor de banco de dados POSTGRES e pgAdmin4 para visualização das tabelas.
+## Projeto de controle de entrada e saída financeira com Spring Boot Java e o Spring Security para a autenticação JWT, usando docker para o servidor de banco de dados POSTGRES e pgAdmin4 para visualização das tabelas.
 
 ##Abaixo segue o link do arquivo do docker-compose.yml para você subir após ter instalado e configurado o docker em seu computador. O Arquivo pode ser colocado em qualquer lugar do seu computador e para você rodar deve executar o seguinte comando:
 
