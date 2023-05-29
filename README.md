@@ -25,5 +25,7 @@ A Database já é criada pelo docker-compose, basta você rodar o script abaixo 
 
 ## Após abrir o projeto com o a sua IDEA de preferência (Eclipse, Intellij, Spring Tools, Netbeans) basta rodar a aplicação API que ficará disponível na porta http://localhost:8080.
 
+Link do Projeto Frontend:
+[https://github.com/bruno130187/minhasfinancas-frontend]
 
 Segue meu LinkedIn: [https://www.linkedin.com/in/bruno-araujo-oficial/]
